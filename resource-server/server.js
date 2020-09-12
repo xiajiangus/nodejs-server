@@ -12,6 +12,7 @@
 
 const express = require('express');
 const OktaJwtVerifier = require('@okta/jwt-verifier');
+const bodyParser = require('body-parser');
 var cors = require('cors');
 
 const sampleConfig = require('../config.js');
@@ -54,7 +55,13 @@ const app = express();
 /**
  * For local testing only!  Enables CORS for all domains
  */
+
+let messages = [];
+
 app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.json({
@@ -76,18 +83,14 @@ app.get('/secure', authenticationRequired, (req, res) => {
  * print some messages for the user if they are authenticated
  */
 app.get('/api/messages', authenticationRequired, (req, res) => {
-  res.json({
-    messages: [
-      {
-        date:  new Date(),
-        text: 'I am a robot.'
-      },
-      {
-        date:  new Date(new Date().getTime() - 1000 * 60 * 60),
-        text: 'Hello, world!'
-      }
-    ]
-  });
+  res.json({messages});
+});
+app.post('/api/message', authenticationRequired, (req, res) => {
+  const message = { date: new Date(),
+                    text: req.body.text };
+  messages.push(message);
+  res.json({messages});
+
 });
 
 app.listen(sampleConfig.resourceServer.port, () => {
