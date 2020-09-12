@@ -49,7 +49,7 @@ npm run resource-server
 
 Now navigate to http://localhost:8000 in your browser.
 
-If you see a basic welcome message, then things are working!  Now open a new terminal window and run the front-end sample project of your choice (see links in Prerequisites).  Once the front-end sample is running, you can navigate to http://localhost:8080 in your browser and log in to the front-end application.  Once logged in you can navigate to the "Get Messages" and "Send Message" page to see the interaction with the resource server.
+If you see a basic welcome message, then things are working!  Now open a new terminal window and run the front-end sample project of your choice (see links in Prerequisites).  Once the front-end sample is running, you can navigate to http://localhost:8080 in your browser and log in to the front-end application.  Once logged in you can navigate to the "Get Messages" and "Create Message" page to see the interaction with the resource server.
 
 [Implicit Flow]: https://developer.okta.com/authentication-guide/implementing-authentication/implicit
 [Okta Angular Sample Apps]: https://github.com/okta/samples-js-angular
